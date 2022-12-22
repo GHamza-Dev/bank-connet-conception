@@ -1,0 +1,42 @@
+classDiagram
+direction LR
+
+%% Relations
+Client "1.1" *-- "1.1" Account: have
+
+class Client{
+    -firstName: String
+    -lastName: String
+    -email: String
+    -password: String
+    -cin: String
+    -isActive: Boolean
+}
+
+class Account{
+    -client: Client
+    -accountNumber: Integer
+    -accountType: String
+    -balance: Double
+}
+
+class Transaction{
+    -amount: Long
+    -fromAccount: Account
+    -date: Date
+}
+
+class Transfer{
+    -toAccount: Account
+}
+
+class Bill{
+    -billNumber: Long
+}
+
+Account "1..1" -- "*..0" Transaction
+
+Transaction <|-- Transfer
+Transaction <|-- Deposit
+Transaction <|-- Widthdraw
+Transaction <|-- Bill
